@@ -3,6 +3,7 @@
 
 Angular auto import by drag and dropping typescript files from tree-view to your editor pane.
 
+![A screenshot of your package](./playback.gif)
 
 # Use
 
