@@ -1,0 +1,17 @@
+{
+  "name": "angular-drag-import",
+  "main": "./lib/angular-drag-import",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [],
+  "repository": "https://github.com/atom/angular-drag-import",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "camelcase": "^5.0.0",
+    "relative": "^3.0.2",
+    "sub-atom": "^1.1.0"
+  }
+}
