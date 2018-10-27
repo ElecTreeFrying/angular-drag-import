@@ -3,7 +3,14 @@
   "main": "./lib/angular-drag-import",
   "version": "0.2.0",
   "description": "Angular drag and drop import in Atom",
-  "keywords": [],
+  "keywords": [
+    "atom",
+    "import",
+    "autoimport",
+    "angular",
+    "drag",
+    "drop"
+  ],
   "repository": "https://github.com/ElecTreeFrying/angular-drag-import.git",
   "license": "MIT",
   "engines": {
