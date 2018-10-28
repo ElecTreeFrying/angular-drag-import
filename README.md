@@ -1,11 +1,10 @@
 
 # angular-drag-import package
 
-Angular auto import by drag and dropping typescript files from tree-view to your editor pane.
+[Angular](https://atom.io/ "angular.io") auto import in [Atom](https://angular.io/ "atom.io") by drag and dropping [typescript](https://www.typescriptlang.org/ "typescriptlang.org") files from tree-view to your editor pane.
 
-<img alt="A screenshot of your package" src="./playback.gif" data-canonical-src="./playback.gif" width="900" />
-
+![Angular drag and drop sample](./playback.gif "Angular drag and drop sample")
 
 # Use
 
-Drag and drop your service, modules, components, pipes, interfaces and models to import to another typescript file like a boss.
+Drag and drop Angular service, modules, components, pipes, interfaces and models to import to another typescript file like a boss.
