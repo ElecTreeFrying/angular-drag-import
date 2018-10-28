@@ -5,9 +5,10 @@
   "description": "Angular drag and drop import in Atom",
   "keywords": [
     "atom",
+    "angular",
+    "typescript",
     "import",
     "autoimport",
-    "angular",
     "drag",
     "drop"
   ],
