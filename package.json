@@ -1,7 +1,7 @@
 {
   "name": "angular-drag-import",
   "main": "./angular-drag-import",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Angular drag and drop import in Atom",
   "keywords": [
     "atom",
