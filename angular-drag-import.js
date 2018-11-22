@@ -1,10 +1,16 @@
 'use babel';
 
-import AngularDragImportView from './angular-drag-import-view';
 import { CompositeDisposable } from 'atom';
 import relative from 'relative';
 import subAtom from 'sub-atom';
 import camelcase from 'camelcase';
+
+class AngularDragImportView {
+  constructor(serializedState) {}
+  serialize() {}
+  destroy() { this.element.remove(); }
+  getElement() { return this.element; }
+}
 
 export default {
 
@@ -15,8 +21,35 @@ export default {
   importCursor: null,
   importQuote: null,
 
+  registrar: {
+    importQuote: {
+      order: 1,
+      title: 'Quote character around imported path',
+      type: 'boolean',
+      enum: [
+        { value: true, description: 'Single quotes' },
+        { value: false, description: 'Double quotes' }
+      ],
+      default: true
+    },
+    importPosition: {
+      order: 2,
+      title: 'Import position',
+      description: "Append the import line at the end of the import list.",
+      type: 'boolean',
+      default: false
+    },
+    importCursor: {
+      order: 3,
+      title: 'Import on mouse cursor',
+      description: "Append the import line on the selected line.",
+      type: 'boolean',
+      default: false
+    }
+  },
+
   initState(state) {
-    this.config = require('./angular-drag-import-package-configs').registrar;
+    this.config = this.registrar;
     this.angularDragImportView = new AngularDragImportView(state.angularDragImportViewState);
     this.subscriptions = new CompositeDisposable();
     this.subscriptions = new subAtom();
@@ -55,7 +88,7 @@ export default {
   toImportCursor(buffer, newPath, editor) {
     buffer = buffer.split('\n');
     cursorPosition = atom.workspace.getActiveTextEditor().getCursorBufferPosition().row;
-    buffer.splice(cursorPosition + 1, 0, newPath);
+    buffer.splice(cursorPosition, 0, newPath);
     buffer = buffer.join('\n');
     editor.setText(buffer);
   },
@@ -84,8 +117,6 @@ export default {
       : isSameFolder
         ? `import { ${importPath} } from "${path}";`
         : `import { ${importPath} } from "./${path}";`;
-
-
     this.importCursor ? this.toImportCursor(buffer, newPath, editor) : 0;
     this.importPosition ? this.toImportPositionBottom(buffer, newPath, editor) : this.toImportPositionTop(buffer, newPath, editor);
     atom.notifications.addSuccess(`Successfully added ${importPath} to path.`);
