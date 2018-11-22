@@ -21,7 +21,7 @@ export default {
   importCursor: null,
   importQuote: null,
 
-  registrar: {
+  config: {
     importQuote: {
       order: 1,
       title: 'Quote character around imported path',
@@ -49,7 +49,6 @@ export default {
   },
 
   initState(state) {
-    this.config = this.registrar;
     this.angularDragImportView = new AngularDragImportView(state.angularDragImportViewState);
     this.subscriptions = new CompositeDisposable();
     this.subscriptions = new subAtom();
