@@ -6,7 +6,7 @@
 * `initState(...)` removal.
 
 ### Features
-* Users can now select whether to include to export name or not.
+* Users can now select whether to include export name or not.
 * Users can now select whether to add semicolon on import line or not.
 * Users can now close all active notifications on ESC key.
 
