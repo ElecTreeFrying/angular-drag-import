@@ -15,7 +15,10 @@ export default {
 
   angularDragImportView: null,
   subscriptions: null,
+  closeAllNotifications: atom.config.get('angular-drag-import.closeAllNotifications'),
   importPosition: atom.config.get('angular-drag-import.importPosition'),
+  addExportName: atom.config.get('angular-drag-import.addExportName'),
+  addSemicolon: atom.config.get('angular-drag-import.addSemicolon'),
   importCursor: atom.config.get('angular-drag-import.importCursor'),
   importQuote: atom.config.get('angular-drag-import.importQuote'),
 
@@ -28,26 +31,41 @@ export default {
       enum: [   { value: true, description: 'Single quotes' },
                 { value: false, description: 'Double quotes' }    ]
     },
-    importPosition: {
+    addExportName: {
       order: 2,
+      title: 'Add export name',
+      description: "Include export name in import list.",
+      type: 'boolean',
+      default: true
+    },
+    addSemicolon: {
+      order: 3,
+      title: 'Add semicolon',
+      description: "Include semicolon in import list.",
+      type: 'boolean',
+      default: true
+    },
+    importPosition: {
+      order: 4,
       title: 'Import position',
       description: "Append the import line at the end of the import list.",
       type: 'boolean',
-      default: false
+      default: true
     },
     importCursor: {
-      order: 3,
+      order: 5,
       title: 'Import on mouse cursor',
       description: "Append the import line on the selected line.",
       type: 'boolean',
       default: false
+    },
+    closeAllNotifications: {
+      order: 6,
+      title: 'Close all notifications on ESC',
+      description: "Closes all active notifications on Escape keydown",
+      type: 'boolean',
+      default: false
     }
-  },
-
-  initState(state) {
-    this.angularDragImportView = new AngularDragImportView(state.angularDragImportViewState);
-    this.subscriptions = new subAtom();
-    this.configObserver();
   },
 
   configObserver() {
@@ -63,13 +81,15 @@ export default {
       if (!this.importPosition && !this.importCursor) return;
       typeof newValue === 'boolean' && importCond ? atom.config.set('angular-drag-import.importPosition', newValue ? 'false' : 'true') : 0;
     });
+    atom.config.observe('angular-drag-import.closeAllNotifications', (newValue) => (this.closeAllNotifications = newValue));
+    atom.config.observe('angular-drag-import.addExportName', (newValue) => (this.addExportName = newValue));
+    atom.config.observe('angular-drag-import.addSemicolon', (newValue) => (this.addSemicolon = newValue));
     atom.config.observe('angular-drag-import.importQuote', (newValue) => (this.importQuote = newValue));
   },
 
-  toImportCursor(buffer, newPath, editor) {
+  toImportCursor(buffer, newPath, editor, cursorPosition) {
     buffer = buffer.split('\n');
-    cursorPosition = atom.workspace.getActiveTextEditor().getCursorBufferPosition().row;
-    buffer.splice(cursorPosition, 0, newPath);
+    buffer.splice(cursorPosition.row, 0, newPath);
     buffer = buffer.join('\n');
     editor.setText(buffer);
   },
@@ -80,9 +100,8 @@ export default {
     editor.setText(newText);
   },
 
-  toImportPositionBottom(buffer, newPath, editor) {
+  toImportPositionBottom(buffer, newPath, editor, cursorPosition) {
     let replaceIndex = 0;
-    cursorPosition = atom.workspace.getActiveTextEditor().getCursorBufferPosition();
     buffer.split('\n').forEach((e, i) => (!e.includes('import') && replaceIndex === 0 ? replaceIndex = i : 0));
     buffer = buffer.split('\n');
     buffer.splice(replaceIndex, 0, newPath);
@@ -90,8 +109,20 @@ export default {
     editor.setText(buffer);
   },
 
+  popNotif(importPath, path, buffer, editor, cursorPosition, isSameFolder) {
+    const singleOtherFolder = `'${path}'`,
+          doubleOtherFolder = `"${path}"`,
+          singleSameFolder = `'./${path}'`,
+          doubleSameFolder = `"./${path}"`;
+    const newPath = `import { ${this.addExportName ? importPath : ''} } from ${isSameFolder ? this.importQuote ? singleSameFolder : doubleSameFolder : this.importQuote ? singleOtherFolder : doubleOtherFolder}${this.addSemicolon ? ';' : ''}`;
+    this.importCursor ? this.toImportCursor(buffer, newPath, editor, cursorPosition) : 0;
+    this.importPosition ? this.toImportPositionBottom(buffer, newPath, editor, cursorPosition) : this.toImportPositionTop(buffer, newPath, editor, cursorPosition);
+    atom.notifications.addSuccess(`Successfully added ${importPath} to path.`);
+  },
+
   calculatePath(editor) {
-    let selectedSpan = document.querySelector('.file.entry.list-item.selected>span');
+    const selectedSpan = document.querySelector('.file.entry.list-item.selected>span');
+    const cursorPosition = atom.workspace.getActiveTextEditor() != undefined ? atom.workspace.getActiveTextEditor().getCursorBufferPosition() : 0;
     if (!selectedSpan) return;
     const from = selectedSpan.dataset.path.toString();
     const to = editor.getPath().toString();
@@ -103,26 +134,23 @@ export default {
     if (!from_isTs || !to_isTs) return;
     let importName = path.split('/').reverse()[0];
     importName = camelcase(importName, { pascalCase: true });
-    this.popNotif(importName, path, buffer, editor, path[0] !== '.');
-  },
-
-  popNotif(importPath, path, buffer, editor, isSameFolder) {
-    const singleOtherFolder = `'${path}'`,
-          doubleOtherFolder = `"${path}"`,
-          singleSameFolder = `'./${path}'`,
-          doubleSameFolder = `"./${path}"`;
-    const newPath = `import { ${importPath} } from ${isSameFolder ? this.importQuote ? singleSameFolder : doubleSameFolder : this.importQuote ? singleOtherFolder : doubleOtherFolder};`;
-    this.importCursor ? this.toImportCursor(buffer, newPath, editor) : 0;
-    this.importPosition ? this.toImportPositionBottom(buffer, newPath, editor) : this.toImportPositionTop(buffer, newPath, editor);
-    atom.notifications.addSuccess(`Successfully added ${importPath} to path.`);
+    this.popNotif(importName, path, buffer, editor, cursorPosition, path[0] !== '.');
   },
 
   activate(state) {
-    this.initState(state);
+    this.angularDragImportView = new AngularDragImportView(state.angularDragImportViewState);
+    this.subscriptions = new subAtom();
+    this.configObserver();
     this.subscriptions.add(atom.workspace.observeTextEditors((editor) => {
       const editorView = atom.views.getView(editor);
       const lines = editorView.querySelector('.lines');
       this.subscriptions.add(lines, 'drop', e => (this.calculatePath(editor)));
+      this.subscriptions.add(lines, 'keydown', e => {
+        if (e.originalEvent.key === 'Escape') {
+          const closeAll = document.querySelectorAll('atom-workspace .close');
+          this.closeAllNotifications ? closeAll.forEach((a) => (a.click())) : closeAll.forEach((a, i) => (closeAll.length === (i + 1) ? a.click() : 0));
+        }
+      });
     }));
   },
 
