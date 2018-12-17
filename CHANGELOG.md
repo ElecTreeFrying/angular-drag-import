@@ -1,4 +1,13 @@
 
+## 0.5.0 - Shadow Fiend Release (2018-12-17)
+
+### Bug Fixes
+* Entire package moved to lib directory.
+* `config` and retrieval moved to `package-config`.
+
+### Features
+* Added warning and error notifications if import file is not a typescript file or vice versa.
+
 ## 0.4.0 - Witch Doctor Release (2018-12-12)
 
 ### Bug Fixes
