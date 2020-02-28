@@ -12,13 +12,22 @@
     "drag",
     "drop"
   ],
-  "repository": "https://github.com/ElecTreeFrying/angular-drag-import.git",
+  "homepage": "https://github.com/ElecTreeFrying/angular-drag-import#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ElecTreeFrying/angular-drag-import.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ElecTreeFrying/angular-drag-import/issues"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "deprecated": false,
+  "bundleDependencies": false,
   "dependencies": {
-    "camelcase": "^5.0.0",
+    "camelcase": "^5.3.1",
     "relative": "^3.0.2",
     "sub-atom": "^1.1.0"
   }
