@@ -1,4 +1,12 @@
 
+## 0.6.0 - Wood Release (2020-02-28)
+
+### Updates
+* lib/main.js refactored.
+
+### Bug Fixes
+* Import fires upon dragging panes fixed.
+
 ## 0.5.0 - Shadow Fiend Release (2018-12-17)
 
 ### Bug Fixes

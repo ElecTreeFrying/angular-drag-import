@@ -1,40 +1,8 @@
 {
-  "_from": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-  "_id": "angular-drag-import@0.5.0",
-  "_inBundle": false,
-  "_integrity": "sha512-QWE0FuQ/fPc4kh6WKEB0rmK4IqXJKTxFP0d/J1UZUOz9tZ2K+8YMAY7nD9vjBo3QmgmgD/8YtW3goGhVwwbDSA==",
-  "_location": "/angular-drag-import",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "remote",
-    "raw": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-    "rawSpec": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-    "saveSpec": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-    "fetchSpec": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-  "_shasum": "d4e477d2228f9b2623afe6a2ac6f7ab283968356",
-  "_spec": "https://www.atom.io/api/packages/angular-drag-import/versions/0.5.0/tarball",
-  "_where": "C:\\Users\\jjger\\AppData\\Local\\Temp\\apm-install-dir-1191024-11680-jox3tw.6u2m",
-  "bugs": {
-    "url": "https://github.com/ElecTreeFrying/angular-drag-import/issues"
-  },
-  "bundleDependencies": false,
-  "dependencies": {
-    "camelcase": "^5.0.0",
-    "relative": "^3.0.2",
-    "sub-atom": "^1.1.0"
-  },
-  "deprecated": false,
+  "name": "angular-drag-import",
+  "main": "./lib/main",
+  "version": "0.5.0",
   "description": "Angular drag and drop import in Atom",
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
-  "homepage": "https://github.com/ElecTreeFrying/angular-drag-import#readme",
   "keywords": [
     "atom",
     "angular",
@@ -44,12 +12,23 @@
     "drag",
     "drop"
   ],
-  "license": "MIT",
-  "main": "./lib/main",
-  "name": "angular-drag-import",
+  "homepage": "https://github.com/ElecTreeFrying/angular-drag-import#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ElecTreeFrying/angular-drag-import.git"
   },
-  "version": "0.5.0"
+  "bugs": {
+    "url": "https://github.com/ElecTreeFrying/angular-drag-import/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "deprecated": false,
+  "bundleDependencies": false,
+  "dependencies": {
+    "camelcase": "^5.3.1",
+    "relative": "^3.0.2",
+    "sub-atom": "^1.1.0"
+  }
 }
