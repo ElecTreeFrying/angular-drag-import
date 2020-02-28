@@ -1,14 +1,14 @@
 
-# angular-drag-import package
+# angular-drag-import
 
-[Angular](https://atom.io/ "angular.io") auto import in [Atom](https://angular.io/ "atom.io") by drag and dropping [typescript](https://www.typescriptlang.org/ "typescriptlang.org") files from tree-view, to your active typescript file in editor pane.
+Drag and drop import package for [Angular]. Drag and drop [typescript] files from tree-view, to your active [.ts] file in editor pane.
 
 ![Angular drag and drop sample usage](https://goo.gl/UJrPB6 "Angular drag and drop sample")
 
 # Features
 
-* 🔥 Append import path at the end or before the import list.
-* 🔥 Select line (mouse) to import.
+* 🔥 Append import at the end or before the import list.
+* 🔥 Append import on any select line in your active pane.
     <details>
       <summary>Show 💨</summary>
       <img src="https://goo.gl/dBRDzj"></img>
@@ -25,3 +25,9 @@ Drag your ⭐️**Angular** *service*, ⭐️*modules*, ⭐️*components*, ⭐�
 # License
 
 MIT ⚡️
+
+
+[Angular]: https://angular.io/
+[Atom]: https://atom.io/
+[typescript]: https://www.typescriptlang.org/
+[.ts]: https://www.reviversoft.com/file-extensions/ts
