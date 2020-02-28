@@ -1,5 +1,5 @@
 
-# angular-drag-import
+# angular-drag-import package
 
 Drag and drop import package for [Angular]. Drag and drop [typescript] files from tree-view, to your active [.ts] file in editor pane.
 
