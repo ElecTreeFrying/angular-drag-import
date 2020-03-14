@@ -1,48 +1,55 @@
 
-## v0.6.1 - Stone Release (2020-03-14)
+## v0.6.9 (2020-03-14)
+
+## Fixed
+* uncaught error on drop without active pane
+
+### Changes
+* chore, renames variables and functions.
+* replaced release names with version numbers in `CHANGELOG.md`.
+
+## v0.6.8 (2020-03-14)
 
 ### Changes
 * removed test folder.
 
-## v0.6.0 - Wood Release (2020-02-28)
+## v0.6.0 (2020-02-28)
 
 ### Updates
 * lib/main.js refactored.
 
-### Bug Fixes
+### Fixes
 * Import fires upon dragging panes fixed.
 
-## 0.5.0 - Shadow Fiend Release (2018-12-17)
+## v0.5.0 (2018-12-17)
 
-### Bug Fixes
+### Fixes
 * Entire package moved to lib directory.
 * `config` and retrieval moved to `package-config`.
 
-### Features
+### Added
 * Added warning and error notifications if import file is not a typescript file or vice versa.
 
-## 0.4.0 - Witch Doctor Release (2018-12-12)
+## v0.4.0 (2018-12-12)
 
-### Bug Fixes
+### Fixes
 * **cursorPosition**: moved to `calculatePath(...)` to remove additional declaration in `toImportCursor(...)` and `toImportPositionBottom(...)`.
 * `initState(...)` removal.
 
-### Features
-* Users can now select whether to include export name or not.
-* Users can now select whether to add semicolon on import line or not.
-* Users can now close all active notifications on ESC key.
+### Added
+* Toggle include export name.
+* Toggle add semicolon in import statements.
+* Close all active notifications on ESC key.
 
-## 0.3.1 - Treant Protector Release (2018-11-23)
+## v0.3.1 (2018-11-23)
 
-### Features
+### Added
+*
+
 * Users can now choose whether to append import line at the end of import list or before.
 * Users can now append imports on the selected line (mouse).
 * Users can now choose between single quotes and double quotes.
 
-## 0.3.0 - Crystal Maiden Release
-
-## 0.2.0 - Pudge Release
-
-## 0.1.0 - First Release
+## v0.1.0 - First Release
 * Every feature added
 * Every bug fixed
