@@ -1,5 +1,10 @@
 
-## 0.6.0 - Wood Release (2020-02-28)
+## v0.6.1 - Stone Release (2020-03-14)
+
+### Changes
+* removed test folder.
+
+## v0.6.0 - Wood Release (2020-02-28)
 
 ### Updates
 * lib/main.js refactored.

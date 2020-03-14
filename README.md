@@ -1,12 +1,9 @@
 
-# angular-drag-import package
+# angular-drag-import (Atom package)
 
 Drag and drop import [package] for [Atom]. Auto import by dragging [typescript] files from your [Angular] project in tree-view to your active pane without typing long and tedious import statements and file paths.
 
-![Angular drag and drop sample usage](https://goo.gl/UJrPB6 "Angular drag and drop sample")
-
-
-# Features
+## Features
 
 * 🔥 Append import statements at the bottom or to top of list.
 * 🔥 Append import statements on selected line.
@@ -16,14 +13,14 @@ Drag and drop import [package] for [Atom]. Auto import by dragging [typescript] 
 </details>
 
 
-# Usage
+## Usage
 
 Usage?
 
 Auto import by dragging files from your [Angular] project in tree-view to your active pane.
 
 
-# License
+## License
 
 MIT ⚡️
 
