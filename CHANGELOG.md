@@ -1,4 +1,9 @@
 
+## v0.6.10 (2020-03-14)
+
+### Added
+* .gif sample usage in `README.md`
+
 ## v0.6.9 (2020-03-14)
 
 ## Fixed
