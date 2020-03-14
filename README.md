@@ -3,6 +3,7 @@
 
 Drag and drop import [package] for [Atom]. Auto import by dragging [typescript] files from your [Angular] project in tree-view to your active pane without typing long and tedious import statements and file paths.
 
+
 ## Features
 
 * 🔥 Append import statements at the bottom or to top of list.
